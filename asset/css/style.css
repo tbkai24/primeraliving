@@ -1,0 +1,33 @@
+body {
+  background: url('../images/bg.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: white;
+}
+.navbar a {
+  color: white !important;
+}
+.navbar a:hover {
+  background-color: rgba(255, 255, 255, 0.2); /* semi-transparent highlight */
+  color: #fff; /* keeps text white */
+}
+
+
+
+#profileDropdownMenu .dropdown-item {
+  color: #212529 !important;
+}
+
+#profileDropdownMenu .dropdown-item:hover {
+  color: #212529 !important;
+  background-color: rgba(0, 0, 0, 0.05) !important; /* subtle hover */
+}
+
+#profileDropdownMenu .dropdown-item.text-danger {
+  color: #dc3545 !important;
+}
+
+#profileDropdownMenu .dropdown-item.text-danger:hover {
+  background-color: rgba(220, 53, 69, 0.1) !important;
+  color: #c82333 !important;
+}
+
