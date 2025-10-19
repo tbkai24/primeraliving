@@ -1,0 +1,14 @@
+# Database
+DB_HOST=localhost
+DB_NAME=primeraliving
+DB_USER=root
+DB_PASS=
+
+# SMTP (Gmail App Password)
+SMTP_HOST=smtp.gmail.com
+SMTP_USER=primeralivingph@gmail.com
+SMTP_PASS=cjaohkrscwktspzz
+SMTP_PORT=587
+
+# Xendit (Secret Key only!)
+XENDIT_SECRET_KEY=xnd_development_xxxxxxxxxxxxx

@@ -1,0 +1,9 @@
+{
+    "require": {
+        "phpmailer/phpmailer": "^6.10",
+        "setasign/fpdi-protection": "^2.1",
+        "setasign/fpdf": "^1.8",
+        "xendit/xendit-php": "7.0.0",
+        "setasign/fpdi": "^2.6"
+    }
+}
