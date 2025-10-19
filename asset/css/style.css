@@ -1,0 +1,1620 @@
+/* ===== Brand Colors ===== */
+:root {
+  --brand-blue: #2A6F9E;
+  --brand-blue-dark: #1E4E70;
+  --gray: #6c757d;
+  --gray-dark: #495057;
+  --white: #ffffff;
+  --coral: #FF7F50;
+  --light-gray: #F5F5F5;
+  --table-header: #2A6F9E;
+}
+
+/* ===== Navbar ===== */
+.navbar-custom {
+    background-color: var(--brand-blue);
+    border-bottom: 1px solid var(--brand-blue-dark);
+    padding: 10px 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.navbar-brand {
+    color: var(--white);
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.navbar-brand:hover {
+    color: #d9d9d9;
+}
+
+.navbar-nav .nav-link {
+    color: var(--white);
+    margin: 0 5px;
+    transition: color 0.3s;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #d9d9d9;
+}
+
+.navbar .badge {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--white);
+    background-color: var(--coral);
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+    min-width: 250px;
+    background-color: var(--light-gray);
+    border-radius: 5px;
+    padding: 0.25rem 0;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.dropdown-item {
+    color: #212529;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.dropdown-item i {
+    margin-right: 8px;
+}
+
+.dropdown-item:hover {
+    background-color: var(--brand-blue);
+    color: var(--white);
+}
+
+/* ===== Footer ===== */
+.footer-custom {
+    background-color: var(--brand-blue);
+    border-top: 1px solid var(--brand-blue-dark);
+    padding: 10px 0;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+}
+
+/* ===== Buttons ===== */
+.btn-action {
+    background-color: var(--brand-blue);
+    color: var(--white);
+    padding: 8px 20px;
+    border: none;
+    font-weight: 500;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-action:hover {
+    background-color: var(--brand-blue-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Cancel Button */
+.btn-close-custom {
+    background-color: var(--gray);
+    color: var(--white);
+    padding: 6px 16px;
+    font-size: 0.9rem;
+    cursor: not-allowed;
+    opacity: 0.8;
+    transition: all 0.3s;
+}
+
+.btn-close-custom:hover {
+    background-color: var(--gray-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* ===== Hero Section ===== */
+.hero-section .carousel-item {
+    min-height: 80vh;
+    position: relative;
+}
+
+.hero-section .carousel-item::before {
+    content: "";
+    position: absolute;
+    top:0; left:0; right:0; bottom:0;
+    background: rgba(0,0,0,0.45);
+    z-index: 1;
+}
+
+.hero-section .carousel-item > .d-flex {
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+}
+
+.hero-section h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.hero-section p {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    margin-bottom: 1.5rem;
+}
+
+/* ===== Settings Menu ===== */
+.settings-menu {
+    max-width: 400px;
+    margin: 40px auto;
+    text-align: left;
+}
+
+.settings-menu-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--brand-blue);
+    border-left: 5px solid var(--brand-blue-dark);
+    padding-left: 12px;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.5px;
+}
+
+.settings-menu .list-group {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.settings-menu .list-group-item {
+    border: none;
+    padding: 12px 16px;
+    font-weight: 500;
+    color: var(--brand-blue);
+    display: flex;
+    align-items: center;
+    transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.settings-menu .list-group-item i {
+    font-size: 1.1rem;
+    margin-right: 10px;
+    color: var(--brand-blue);
+}
+
+.settings-menu .list-group-item:hover {
+    background-color: var(--brand-blue);
+    color: var(--white);
+}
+
+.settings-menu .list-group-item:hover i {
+    color: var(--white);
+}
+
+.settings-menu .list-group-item.active {
+    background-color: var(--brand-blue-dark);
+    color: var(--white);
+    border-color: var(--brand-blue-dark);
+}
+
+.settings-menu .list-group-item.active i {
+    color: var(--white);
+}
+
+/* ===== Table Header ===== */
+.thead {
+    background-color: var(--table-header);
+    color: var(--white);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+    .dropdown-menu {
+        min-width: 200px;
+    }
+    .navbar-nav .nav-link {
+        padding: 10px 0;
+    }
+}
+
+/* ===== Homeable-Inspired Landing ===== */
+.modern-hero {
+  background: #f8f9fa;
+  padding: 80px 0;
+}
+.hero-text h1 {
+  font-size: 3rem;
+  line-height: 1.2;
+}
+.hero-text .text-brand {
+  color: var(--brand-blue);
+}
+.hero-text p {
+  color: var(--gray-dark);
+  font-size: 1.1rem;
+}
+.hero-image img {
+  max-width: 90%;
+  border-radius: 16px;
+  transition: transform 0.5s;
+}
+.hero-image img:hover {
+  transform: scale(1.03);
+}
+
+/* ===== Featured Rentals ===== */
+.modern-featured .modern-card {
+  background: white;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+.modern-featured .modern-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+}
+
+/* ===== Features Section ===== */
+.modern-features {
+  background: #f4f6f8;
+}
+.modern-features i {
+  color: var(--brand-blue);
+}
+
+/* ===== Testimonials ===== */
+.modern-testimonials {
+  background: #ffffff;
+}
+.testimonial {
+  background: #f8f9fa;
+  border-left: 5px solid var(--brand-blue);
+  transition: all 0.3s ease;
+}
+.testimonial:hover {
+  transform: translateY(-5px);
+  background: #1b96e9;
+}
+
+/* ===== CTA Section ===== */
+.modern-cta {
+  background: linear-gradient(135deg, var(--brand-blue-dark), var(--brand-blue));
+}
+
+/* ===== Modern Hero with Animated Peach Gradient ===== */
+.modern-hero {
+  position: relative;
+  background: linear-gradient(120deg, #FFDAB9, #FFB88C, #F9D29D, #FFCC99);
+  background-size: 400% 400%;
+  animation: heroPeachMove 18s ease infinite;
+  padding: 80px 0;
+  color: #2a2a2a; /* readable dark text */
+  overflow: hidden;
+}
+
+/* ===== Animated Gradient Keyframes ===== */
+@keyframes heroPeachMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Optional: Soft overlay for elegance */
+.modern-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.15);
+  z-index: 1;
+}
+
+/* Keep your text above overlay */
+.modern-hero .container {
+  position: relative;
+  z-index: 2;
+}
+
+/* ===== Button Styling (Keep Blue Accent) ===== */
+.modern-hero .btn-action {
+  background-color: #2A6F9E;
+  color: #fff;
+  border: none;
+  padding: 12px 26px;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.modern-hero .btn-action:hover {
+  background-color: #1E4E70;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+}
+
+
+    
+.hero-text {
+  padding-right: 40px;
+  border-right: 2px solid rgba(42, 111, 158, 0.2); /* vertical divider between text and image */
+}
+
+.hero-text h5 {
+  color: var(--brand-blue-dark);
+  letter-spacing: 1px;
+}
+
+.hero-text h1 {
+  font-size: 3rem;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.hero-text p {
+  color: var(--gray-dark);
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+
+.hero-image img {
+  max-width: 90%;
+  border-radius: 16px;
+  transition: transform 0.5s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.hero-image img:hover {
+  transform: scale(1.03);
+}
+
+/* Responsive fix: hide divider on mobile */
+@media (max-width: 768px) {
+  .hero-text {
+    border-right: none;
+    padding-right: 0;
+    border-bottom: 2px solid rgba(42, 111, 158, 0.2);
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+  }
+}
+
+
+/* ===== Animated Changing Word (Smooth + Slower) ===== */
+.changing-word {
+  color: #2A6F9E; /* brand blue */
+  display: inline-block;
+  transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+}
+
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+[data-aos] {
+  opacity: 0;
+  transition-property: transform, opacity;
+}
+[data-aos].aos-animate {
+  opacity: 1;
+}
+
+/* ===========================
+   RICH SCROLL ANIMATED BACKGROUNDS
+   =========================== */
+
+/* Featured Rentals */
+.modern-featured {
+  background: linear-gradient(120deg, #2A6F9E, #6F42C1, #FFB6A1);
+  background-size: 300% 300%;
+  animation: gradientFlow 18s ease infinite;
+  color: white;
+}
+
+/* Why Choose Us */
+.modern-features {
+  background: linear-gradient(120deg, #1E4E70, #2A6F9E, #FF8C7A);
+  background-size: 300% 300%;
+  animation: gradientFlow 20s ease infinite;
+  color: white;
+}
+
+/* Testimonials */
+.modern-testimonials {
+  background: linear-gradient(135deg, #2A6F9E, #6F42C1, #F9A875);
+  background-size: 300% 300%;
+  animation: gradientFlow 22s ease infinite;
+  color: white;
+}
+
+/* Call To Action */
+.modern-cta {
+  background: linear-gradient(135deg, #1E4E70, #2A6F9E, #FF7F50);
+  background-size: 300% 300%;
+  animation: gradientFlow 25s ease infinite;
+  color: white;
+}
+
+/* Gradient animation */
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+
+.modern-featured h2,
+.modern-features h2,
+.modern-testimonials h2,
+.modern-cta h2 {
+  color: #fff;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.modern-card,
+.testimonial {
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+/* Make rental card titles black */
+.modern-card h5 {
+  color: #000 !important;
+}
+
+/* ========== HERO ANIMATION ========== */
+.modern-hero {
+  background: linear-gradient(120deg, #ffdab9, #ffd5b5, #fbc4ab, #ffb3a7);
+  background-size: 400% 400%;
+  animation: bgMove 15s ease infinite;
+  padding: 100px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes bgMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Fade-in animation for the hero section */
+.modern-hero .hero-text, 
+.modern-hero .hero-image {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 1.2s ease;
+}
+
+/* When active */
+.hero-visible .hero-text, 
+.hero-visible .hero-image {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Optional: Delay the image slightly */
+.hero-visible .hero-image {
+  transition-delay: 0.3s;
+}
+
+/* ===== Navbar Animation (only homepage) ===== */
+.animated-navbar {
+  transform: translateY(-100%);
+  opacity: 0;
+  animation: navbarSlideDown 1.2s ease forwards;
+}
+
+@keyframes navbarSlideDown {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Navbar scroll effect only for homepage */
+.animated-navbar.scrolled {
+  background: linear-gradient(90deg, #1E4E70, #2A6F9E);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: background 0.5s ease, box-shadow 0.3s ease;
+}
+
+/* ===== Modern Cool Navbar ===== */
+.cool-navbar {
+  background: linear-gradient(135deg, rgba(42,111,158,0.9), rgba(30,78,112,0.9));
+  backdrop-filter: blur(10px);
+  border-bottom: 2px solid rgba(255,255,255,0.2);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 12px 0;
+  transition: all 0.4s ease;
+}
+
+.cool-navbar .navbar-brand {
+  font-size: 1.3rem;
+  color: #fff !important;
+  letter-spacing: 0.5px;
+}
+
+.cool-navbar .navbar-nav .nav-link {
+  color: #f1f1f1 !important;
+  font-weight: 500;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.cool-navbar .navbar-nav .nav-link:hover {
+  color: #FFD580 !important;
+  text-shadow: 0 0 6px rgba(255,213,128,0.6);
+}
+
+.cool-navbar .navbar-nav .nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0%;
+  height: 2px;
+  background: #FFD580;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.cool-navbar .navbar-nav .nav-link:hover::after {
+  width: 60%;
+}
+
+/* Navbar Buttons */
+.cool-navbar .btn {
+  font-weight: 600;
+  border-radius: 25px;
+  padding: 6px 16px;
+  transition: all 0.3s ease-in-out;
+}
+
+.cool-navbar .btn-outline-light:hover {
+  background: #fff;
+  color: #2A6F9E !important;
+}
+
+/* Dropdown Styling */
+.cool-navbar .dropdown-menu {
+  background: rgba(255,255,255,0.95);
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  overflow: hidden;
+  border: none;
+}
+
+.cool-navbar .dropdown-item {
+  color: #2A6F9E;
+  font-weight: 500;
+  padding: 10px 15px;
+  transition: all 0.2s;
+}
+
+.cool-navbar .dropdown-item:hover {
+  background-color: #2A6F9E;
+  color: white;
+}
+
+/* Navbar animation (homepage only) */
+.animated-navbar {
+  transform: translateY(-100%);
+  opacity: 0;
+  animation: navbarSlideDown 1.2s ease forwards;
+}
+
+@keyframes navbarSlideDown {
+  0% { transform: translateY(-100%); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+
+/* ===== LISTINGS PAGE – Trendy & Vibrant ===== */
+.listings-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fcb69f);
+  background-size: cover;
+  color: #333;
+  padding: 100px 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Filter form (soft glass style) */
+.listings-page form {
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(12px);
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #333;
+  padding: 20px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.listings-page form input,
+.listings-page form select {
+  background: rgba(255, 255, 255, 0.75);
+  color: #333;
+  border: none;
+  transition: 0.3s ease;
+}
+
+.listings-page form input:focus,
+.listings-page form select:focus {
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(255, 182, 155, 0.4);
+}
+
+.listings-page form input::placeholder {
+  color: #555;
+}
+
+/* Listing cards */
+.listings-page .card {
+  background: #fff;
+  color: #333;
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  transition: all 0.4s ease;
+}
+
+.listings-page .card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+}
+
+/* Card image hover effect */
+.listings-page .card img {
+  border-radius: 16px 16px 0 0;
+  transition: transform 0.6s ease;
+}
+
+.listings-page .card:hover img {
+  transform: scale(1.05);
+}
+
+/* Buttons */
+.listings-page .btn-action {
+  background: linear-gradient(135deg, #ff6a88, #ff99ac);
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.listings-page .btn-action:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 18px rgba(255, 107, 107, 0.3);
+}
+
+/* Modal styling */
+.modal-content {
+  background: #fff;
+  border-radius: 16px;
+  color: #333;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+
+
+
+
+
+/* 🎨 FILTER BAR DESIGN — Glassmorphism Style */
+.filter-glass {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  color: #fff !important;
+}
+
+.filter-glass input,
+.filter-glass select {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.filter-glass input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.filter-glass select option {
+  color: #000; /* ensures dropdown text is visible */
+}
+
+.filter-glass .btn-action {
+  background: linear-gradient(135deg, #007BFF, #6610f2);
+  border: none;
+  color: #fff;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.filter-glass .btn-action:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 12px rgba(255,255,255,0.3);
+}
+
+.listings-page .container,
+.listings-page .row,
+.listings-page form {
+  background: transparent !important;
+}
+
+/* Remove bg-light (white) on form filters */
+.listings-page form.bg-light {
+  background: rgba(255,255,255,0.1) !important;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+}
+  
+.listings-container {
+  opacity: 0;
+  transform: translateY(40px);
+  animation: containerFadeIn 0.8s ease-out forwards;
+}
+
+/* The animation keyframes */
+@keyframes containerFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.listings-container {
+  opacity: 0;
+  transform: translateY(40px);
+  animation: containerFadeIn 0.9s ease-out 0.2s forwards; /* 0.2s delay */
+}
+
+/* Fix white line below navbar */
+body, html {
+  margin: 0;
+  padding: 0;
+  background: none !important;
+}
+
+.navbar {
+  margin-bottom: 0 !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+  background-clip: border-box;
+}
+
+/* Ensure listing section connects smoothly to navbar */
+.listings-page {
+  margin-top: 0 !important;
+  padding-top: 90px; /* keeps content below navbar */
+}
+
+/* ===== FIX MODAL OVERLAY ISSUE ===== */
+.modal {
+  z-index: 2000 !important;
+}
+
+.modal-backdrop {
+  z-index: 1990 !important;
+}
+
+/* The animated background should never clip or block modals */
+.listings-page {
+  position: relative;
+  z-index: 1; 
+  overflow: visible !important; /* ✅ allow modal overlay */
+}
+
+/* Optional: smooth fade-in for page container */
+.listings-page .container {
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeInListing 0.8s ease-out forwards;
+}
+
+@keyframes fadeInListing {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ✅ Modal appearance fix */
+.listings-page .modal-content {
+  background: rgba(30, 30, 30, 0.95) !important; /* deep dark glass look */
+  color: #fff !important;
+  backdrop-filter: blur(15px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Optional: make the modal header/footer slightly distinct */
+.listings-page .modal-header,
+.listings-page .modal-footer {
+  background: rgba(255, 255, 255, 0.08);
+  border: none;
+}
+
+/* Ensure text in the modal stays readable */
+.listings-page .modal-body p,
+.listings-page .modal-body strong {
+  color: #fff !important;
+}
+
+.text-brand {
+  color: #eee5e5 !important;
+  transition: all 0.3s ease;
+}
+
+.text-brand:hover {
+  text-shadow: 0 0 10px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.5);
+  transform: scale(1.1);
+}
+
+/* 🌅 Scoped How It Works Section */
+.how-section {
+  background: linear-gradient(135deg, #FFE5D1, #FFD1C1, #FFB6A0);
+  background-size: 300% 300%;
+  animation: howGradient 20s ease infinite;
+  color: #333;
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes howGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Timeline Container */
+.timeline-wrapper {
+  position: relative;
+  margin: 60px 0;
+}
+
+.timeline-wrapper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 3px;
+  background: rgba(255, 255, 255, 0.8);
+  transform: translateX(-50%);
+  border-radius: 10px;
+}
+
+/* Timeline Step */
+.timeline-step {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  margin-bottom: 50px;
+  width: 50%;
+}
+
+.timeline-step.left {
+  flex-direction: row-reverse;
+  text-align: right;
+  margin-left: auto;
+  padding-right: 40px;
+}
+
+.timeline-step.right {
+  padding-left: 40px;
+}
+
+.timeline-bubble {
+  width: 60px;
+  height: 60px;
+  min-width: 60px;
+  min-height: 60px;
+  background: linear-gradient(135deg, #FF8C6F, #FF6F61);
+  border-radius: 50%;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  z-index: 2;
+  flex-shrink: 0;
+}
+
+.timeline-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+  padding: 20px 25px;
+  margin: 0 20px;
+  max-width: 400px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.timeline-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* Fix icon overlap */
+.timeline-step.left .timeline-bubble {
+  margin-left: 20px;
+}
+.timeline-step.right .timeline-bubble {
+  margin-right: 20px;
+}
+
+/* Responsive Fix */
+@media (max-width: 768px) {
+  .timeline-wrapper::before {
+    left: 30px;
+  }
+  .timeline-step {
+    flex-direction: row;
+    text-align: left;
+    width: 100%;
+    padding-left: 70px;
+  }
+  .timeline-bubble {
+    position: absolute;
+    left: 20px;
+  }
+  .timeline-card {
+    margin: 0;
+  }
+}
+
+/* Prevent navbar from overlapping How It Works section */
+.how-section {
+  margin-top: 60px; /* Adjust if your navbar height is different */
+}
+
+/* 🌸 Animated Peach Gradient Background for FAQ Section */
+.faq-section {
+  position: relative;
+  overflow: hidden;
+  padding: 80px 0;
+  color: #333;
+  background: linear-gradient(270deg, #FFD1B3, #FFE2CC, #FFD6C2, #FFE8D6);
+  background-size: 800% 800%;
+  animation: peachFlow 15s ease infinite;
+}
+
+/* Smooth gradient animation */
+@keyframes peachFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Optional: FAQ content styling */
+.faq-section h2, 
+.faq-section h3, 
+.faq-section p {
+  color: #3a3a3a;
+}
+
+/* Optional: Make FAQ boxes pop */
+.faq-section .card {
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.faq-section .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+/* ✨ CTA Section - Warm Gradient */
+.cta-section {
+  background: linear-gradient(135deg, #FFBFA3, #FFCDB4, #FFD8C2);
+  background-size: 400% 400%;
+  animation: ctaPeachFlow 12s ease infinite;
+  color: #333;
+}
+
+@keyframes ctaPeachFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Optional: Button styling for better contrast */
+.btn-action {
+  background-color: #ff8b61;
+  border: none;
+  color: #fff;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-action:hover {
+  background-color: #ff7043;
+  transform: translateY(-3px);
+}
+
+
+.application-section {
+  background: linear-gradient(135deg, #FFE5B4, #FFDAB9, #FFCCBC);
+  animation: gradientShift 6s ease infinite alternate;
+  min-height: 100vh;
+  padding-top: 100px;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+
+.dashboard-section {
+  position: relative;
+  min-height: 100vh;
+  background: linear-gradient(-45deg, #FFD6A5, #FFB5A7, #FCD5CE, #F8EDEB);
+  background-size: 400% 400%;
+  animation: dashboardFlow 15s ease infinite;
+  color: #333;
+  transition: background 0.5s ease;
+}
+
+@keyframes dashboardFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.dashboard-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(4px);
+  z-index: 1;
+}
+
+/* 🌈 Soft background (static blend, no moving gradient) */
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #FFD6A5, #FFB5A7, #FCD5CE, #F8EDEB);
+  background-attachment: fixed;
+  background-size: cover;
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+  overflow-x: hidden;
+}
+
+/* 🌫 Overlay for soft glow */
+.dashboard-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(6px);
+  z-index: 0;
+}
+
+/* 🌟 Fade-in animation when page loads */
+.fade-in-dashboard {
+  opacity: 0;
+  transform: translateY(25px);
+  animation: fadeInDashboard 0.8s ease-out forwards;
+}
+
+@keyframes fadeInDashboard {
+  0% {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ✨ Optional: stagger effect for smoother card entry */
+.dashboard-animate {
+  opacity: 0;
+  transform: translateY(25px);
+  animation: fadeInDashboard 0.8s ease-out forwards;
+}
+
+.dashboard-animate:nth-child(1) { animation-delay: 0.2s; }
+.dashboard-animate:nth-child(2) { animation-delay: 0.4s; }
+.dashboard-animate:nth-child(3) { animation-delay: 0.6s; }
+.dashboard-animate:nth-child(4) { animation-delay: 0.8s; }
+
+/* 💳 Card hover effect for interactivity */
+.card {
+  border-radius: 16px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+/* --- Primera Living Peach-Themed Settings Background --- */
+.settings-bg {
+  background: linear-gradient(135deg, #FFE5D4, #FFD1B3, #FFF0E0);
+  background-size: 300% 300%;
+  animation: bgFlow 25s ease infinite;
+  position: relative;
+  z-index: 0;
+  color: #333;
+}
+
+/* Animated gradient flow */
+@keyframes bgFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Soft overlay for gentle warmth and depth */
+.settings-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 243, 236, 0.5); /* Light peach overlay */
+  backdrop-filter: blur(10px);
+  z-index: 1;
+}
+
+/* Keep content above the overlay */
+.settings-bg > * {
+  position: relative;
+  z-index: 2;
+}
+
+
+/* --- Fade-in animation for Settings page --- */
+.fade-in-settings {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInSettings 1.2s ease-out forwards;
+}
+
+@keyframes fadeInSettings {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  60% {
+    opacity: 0.7;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.settings-section {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: sectionFade 1s ease forwards;
+  animation-delay: 0.4s;
+}
+
+@keyframes sectionFade {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 🌸 Primera Living Peach Gradient Background */
+.transaction-bg {
+  background: linear-gradient(135deg, #FFE5D4, #FFD1B3, #FFF0E0);
+  background-size: 300% 300%;
+  animation: bgFlow 20s ease infinite;
+}
+
+@keyframes bgFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ✨ Card Styling */
+.transaction-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(255, 175, 135, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.transaction-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(255, 175, 135, 0.35);
+}
+
+/* 🍑 Buttons */
+.peach-btn {
+  background-color: #6143e4;
+  color: white;
+  border: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.peach-btn:hover {
+  background-color: #D67A52;
+  transform: translateY(-2px);
+}
+
+.btn-outline-peach {
+  border: 1px solid #E98A5E;
+  color: #E98A5E;
+}
+
+.btn-outline-peach:hover {
+  background-color: #E98A5E;
+  color: white;
+}
+
+/* 🍑 Table Header */
+.table-peach thead {
+  background-color: #FFE5D4;
+  color: #333;
+  font-weight: 600;
+}
+
+/* Fade-in Animation */
+.fade-in {
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Accent Colors */
+.text-peach { color: #E98A5E; }
+
+/* --- Primera Living Background --- */
+  .payment-bg {
+    background: linear-gradient(135deg, #FFE5D4, #FFD6A5, #FFF3E2);
+    min-height: 100vh;
+    animation: bgFlow 25s ease infinite;
+    background-size: 300% 300%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 6rem;
+    padding-bottom: 4rem;
+  }
+
+  @keyframes bgFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* --- Table Card --- */
+  .payment-card {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(6px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    border-radius: 15px;
+    animation: fadeIn 1s ease;
+  }
+
+  /* --- Fade In Animation --- */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* --- Button Styling --- */
+  .btn-action {
+    background-color: #2A6F9E;
+    color: #fff;
+    border: none;
+    transition: all 0.3s ease;
+  }
+
+  .btn-action:hover {
+    background-color: #1f5678;
+    transform: scale(1.05);
+  }
+
+  .btn-close-custom {
+    background-color: #ccc;
+    color: #555;
+    border: none;
+  }
+
+  .btn-close-custom:disabled {
+    opacity: 0.8;
+  }
+
+  /* --- Table Enhancements --- */
+  .table th {
+    background-color: #2A6F9E !important;
+    color: #fff;
+  }
+
+  .table td, .table th {
+    vertical-align: middle;
+  }
+
+  /* --- Heading --- */
+  .payment-title {
+    color: #2A6F9E;
+    font-weight: 700;
+  }
+
+/* === Primera Living Peach Gradient Background === */
+  .tickets-bg {
+    background: linear-gradient(135deg, #FFE5D4, #FFD6A5, #FFF3E2);
+    background-size: 300% 300%;
+    animation: bgFlow 25s ease infinite;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 6rem;
+    padding-bottom: 4rem;
+  }
+
+  @keyframes bgFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* === Fade-in Animation === */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* === Card/Table Container === */
+  .tickets-card {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(6px);
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    padding: 1.5rem;
+    animation: fadeIn 0.8s ease;
+  }
+
+  /* === Table Header === */
+  .table thead {
+    background-color: #2A6F9E !important;
+    color: white;
+  }
+
+  /* === Buttons === */
+  .btn-primary {
+    background-color: #2A6F9E;
+    border: none;
+  }
+
+  .btn-primary:hover {
+    background-color: #1f5678;
+    transform: scale(1.05);
+    transition: 0.3s;
+  }
+
+  .btn-success {
+    background-color: #5348eb;
+    border: none;
+  }
+
+  .btn-success:hover {
+    background-color: #d07d54;
+    transition: 0.3s;
+  }
+
+  .btn-secondary:hover {
+    transform: scale(1.05);
+    transition: 0.3s;
+  }
+
+  /* === Modal Styling === */
+  .modal-content {
+    border-radius: 12px;
+    animation: fadeIn 0.6s ease;
+  }
+
+  .modal-header {
+    background: linear-gradient(135deg, #2A6F9E, #E09168);
+    color: white;
+  }
+
+  /* === Page Title === */
+  .tickets-title {
+    color: #2A6F9E;
+    font-weight: 700;
+    animation: fadeIn 0.8s ease;
+  }
+
+  /* === Create Ticket Button Animation === */
+  .create-ticket-btn {
+    animation: fadeIn 1s ease;
+  }
+
+
+
+
+
+
+
+
+
+
+
+/* ===== ABOUT US PAGE STYLES ===== */
+.about-hero {
+ margin: 0;
+  min-height: 50vh;
+  background: linear-gradient(135deg, #FFD6A5, #FFB5A7, #FCD5CE, #F8EDEB);
+ 
+}
+
+@keyframes aboutGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.about-hero .highlight {
+  color: #2A6F9E;
+  
+}
+
+.about-content h2 {
+  color: #181b1d;
+}
+
+.about-mission {
+  background: linear-gradient(120deg, #ffb6a3, #2A6F9E);
+}
+
+.mission-box {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.mission-box:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-5px);
+}
+
+.about-team .team-card {
+  background: #b1cff1;
+  transition: all 0.3s ease;
+}
+
+.about-team .team-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
+}
+
+.text-brand {
+  color: #000000;
+}
+
+.about-contact {
+  background: linear-gradient(135deg, #ffb199 0%, #ff8c69 100%);
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-contact .contact-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  max-width: 600px;
+  border: 1px solid rgba(255,255,255,0.2);
+  transition: all 0.3s ease;
+}
+
+.about-contact .contact-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.about-content {
+  background: linear-gradient(135deg, #ffb199 0%, #ff8c69 100%);
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle floating animation for warmth */
+.about-content::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.15), transparent 70%);
+  animation: peachGlow 8s ease-in-out infinite alternate;
+  z-index: 0;
+}
+
+@keyframes peachGlow {
+  from { transform: scale(1) rotate(0deg); opacity: 0.8; }
+  to { transform: scale(1.2) rotate(10deg); opacity: 1; }
+}
+
+/* Ensure content sits above animation */
+.about-content .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Image polish */
+.about-img {
+  border: 4px solid rgba(255,255,255,0.3);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.about-img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+.story-text {
+  color: #636161;
+  transition: color 0.6s ease-in-out;
+}
+
+
+
+
+
+
