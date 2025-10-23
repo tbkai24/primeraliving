@@ -1,138 +1,192 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const tableBody = document.querySelector('#ticketsTable tbody');
-    const createForm = document.querySelector('#createTicketForm');
-    const createModal = document.querySelector('#createTicketModal');
+document.addEventListener('DOMContentLoaded', () => {
 
-    // ===== Bootstrap Alert Helper =====
-    function showAlert(message, type = 'success') {
-        const alertBox = document.createElement('div');
-        alertBox.className = `alert alert-${type} alert-dismissible fade show position-fixed top-0 end-0 m-3 shadow`;
-        alertBox.style.zIndex = '2000';
-        alertBox.innerHTML = `
-            <strong>${type === 'success' ? '✔' : '❌'} </strong> ${message}
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        `;
-        document.body.appendChild(alertBox);
-        setTimeout(() => {
-            const alert = bootstrap.Alert.getOrCreateInstance(alertBox);
-            alert.close();
-        }, 3000);
+  // ================= LOAD USER TICKETS (tickets.php) =================
+  const ticketsTable = document.getElementById('ticketsTable');
+  if(ticketsTable){
+    loadTickets();
+  }
+
+  // ================= LOAD SINGLE TICKET + MESSAGES (ticket-view.php) =================
+  if(typeof ticketId !== 'undefined' && ticketId > 0){
+    loadTicket(ticketId);
+    const replyForm = document.getElementById('replyForm');
+    if(replyForm){
+      replyForm.addEventListener('submit', function(e){
+        e.preventDefault();
+        sendReply(ticketId);
+      });
     }
+  }
 
-    // ===== Load Tickets =====
-    function loadTickets() {
-        fetch('../../handlers/ticketshandler.php', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: new URLSearchParams({ action: 'fetch' })
-        })
-            .then(response => response.text())
-            .then(text => {
-                try {
-                    const data = JSON.parse(text);
-                    renderTickets(data);
-                } catch (err) {
-                    console.error("Error parsing JSON:", err, text);
-                    tableBody.innerHTML = `
-                        <tr>
-                            <td colspan="6" class="text-muted text-center py-4">
-                                <i class="fa fa-exclamation-circle me-2"></i>
-                                Failed to load tickets. Please try again.
-                            </td>
-                        </tr>`;
-                }
-            })
-            .catch(err => {
-                console.error("Error loading tickets:", err);
-                tableBody.innerHTML = `
-                    <tr>
-                        <td colspan="6" class="text-muted text-center py-4">
-                            <i class="fa fa-exclamation-circle me-2"></i>
-                            Unable to connect to server.
-                        </td>
-                    </tr>`;
-            });
-    }
+  // ================= CREATE TICKET SUBMISSION (create-ticket.php) =================
+  const createTicketForm = document.getElementById('createTicketForm');
+  if(createTicketForm){
+    createTicketForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      
+      const formData = new FormData(createTicketForm);
 
-    // ===== Render Tickets =====
-    function renderTickets(tickets) {
-        tableBody.innerHTML = '';
+      fetch('../../handlers/tickets_handler.php?action=createTicket', {
+        method: 'POST',
+        body: formData
+      })
+      .then(res => res.json())
+      .then(data => {
+        const alertBox = document.getElementById('alertBox');
+        if(alertBox){
+          alertBox.style.display = 'block';
+          const alertDiv = alertBox.querySelector('.alert');
+          if(alertDiv){
+            alertDiv.className = 'alert mb-0 ' + (data.status === 'success' ? 'alert-success' : 'alert-danger');
+            alertDiv.innerText = data.status === 'success' 
+              ? 'Ticket created successfully!' 
+              : (data.message || 'Failed to create ticket');
 
-        if (!Array.isArray(tickets) || tickets.length === 0) {
-            tableBody.innerHTML = `
-                <tr>
-                    <td colspan="6" class="text-muted text-center py-4">
-                        <i class="fa fa-ticket-alt me-2"></i> No tickets found.
-                    </td>
-                </tr>`;
-            return;
+            // Automatically hide success alert after 3 seconds
+            if(data.status === 'success'){
+              setTimeout(() => {
+                alertBox.style.display = 'none';
+              }, 3000);
+            }
+          }
         }
 
-        tickets.forEach(ticket => {
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <td>${ticket.ticket_number || '—'}</td>
-                <td>${ticket.category}</td>
-                <td>${ticket.subject}</td>
-                <td>
-                    <span class="badge ${getStatusClass(ticket.status)}">${ticket.status}</span>
-                </td>
-                <td>${formatDate(ticket.created_at)}</td>
-                <td>
-                    <a href="view-ticket.php?ticket_id=${ticket.ticket_id}" 
-                       class="btn btn-sm btn-outline-primary">
-                        <i class="fa fa-eye"></i> View
-                    </a>
-                </td>
-            `;
-            tableBody.appendChild(row);
-        });
-    }
-
-    // ===== Create Ticket =====
-    createForm.addEventListener('submit', function (e) {
-        e.preventDefault();
-
-        const formData = new FormData(createForm);
-        formData.append('action', 'create');
-
-        fetch('../../handlers/ticketshandler.php', {
-            method: 'POST',
-            body: formData
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    showAlert(`Ticket Created Successfully! Ticket No: ${data.ticket_number}`, 'success');
-                    const modal = bootstrap.Modal.getInstance(createModal);
-                    modal.hide();
-                    createForm.reset();
-                    loadTickets();
-                } else {
-                    showAlert('Failed to create ticket: ' + (data.error || 'Unknown error'), 'danger');
-                }
-            })
-            .catch(err => {
-                console.error("Error creating ticket:", err);
-                showAlert('Server error. Please try again later.', 'danger');
-            });
+        if(data.status === 'success') createTicketForm.reset();
+      })
+      .catch(err => console.error('Error creating ticket:', err));
     });
+  }
 
-    // ===== Helper: Format Date =====
-    function formatDate(dateStr) {
-        if (!dateStr) return '—';
-        const d = new Date(dateStr);
-        return d.toLocaleDateString() + ' ' + d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    }
-
-    // ===== Helper: Status Badge =====
-    function getStatusClass(status) {
-        status = (status || '').toLowerCase();
-        if (status === 'pending') return 'bg-warning text-dark'; // yellow
-        if (status === 'closed') return 'bg-success'; // green (means resolved)
-        return 'bg-secondary';
-    }
-
-    // ===== Initial Load =====
-    loadTickets();
 });
+
+// ================= LOAD USER TICKETS =================
+function loadTickets(){
+  fetch('../../handlers/tickets_handler.php?action=getUserTickets')
+    .then(res => res.json())
+    .then(data => {
+      const tbody = document.querySelector('#ticketsTable tbody');
+      if(!tbody) return;
+
+      tbody.innerHTML = '';
+      if(data.length === 0){
+        tbody.innerHTML = `<tr><td colspan="6" class="text-center text-muted">No tickets found</td></tr>`;
+        return;
+      }
+
+      data.forEach((ticket, i) => {
+        tbody.innerHTML += `
+          <tr>
+            <td>${i+1}</td>
+            <td>${ticket.category}</td>
+            <td>${ticket.subject}</td>
+            <td>${ticket.status}</td>
+            <td>${ticket.created_at}</td>
+            <td>
+              <a href="ticket_view.php?ticket_id=${ticket.ticket_id}" class="btn btn-sm btn-outline-primary me-1">
+                <i class="fas fa-eye"></i>
+              </a>
+              ${ticket.status === 'Pending' ? `<button class="btn btn-sm btn-outline-danger" onclick="deleteTicket(${ticket.ticket_id})">
+                <i class="fas fa-trash"></i>
+              </button>` : ''}
+            </td>
+          </tr>
+        `;
+      });
+    })
+    .catch(err => console.error('Error loading tickets:', err));
+}
+
+// ================= DELETE TICKET =================
+function deleteTicket(ticketId){
+  if(!confirm('Are you sure you want to delete this ticket?')) return;
+
+  const formData = new FormData();
+  formData.append('action', 'deleteTicket');
+  formData.append('ticket_id', ticketId);
+
+  fetch('../../handlers/tickets_handler.php', { method:'POST', body:formData })
+    .then(res => res.json())
+    .then(data => {
+      if(data.status === 'success'){
+        loadTickets();
+        alert('Ticket deleted successfully');
+      } else alert('Failed to delete ticket');
+    })
+    .catch(err => console.error('Error deleting ticket:', err));
+}
+
+// ================= LOAD SINGLE TICKET =================
+function loadTicket(ticketId){
+  fetch(`../../handlers/tickets_handler.php?action=getTicket&ticket_id=${ticketId}`)
+    .then(res => res.json())
+    .then(data => {
+      const ticketInfoDiv = document.getElementById('ticketInfo');
+      const messagesDiv = document.getElementById('ticketMessages');
+
+      if(data.status !== 'success'){
+        if(ticketInfoDiv) ticketInfoDiv.innerHTML = `<p class="text-center text-danger">${data.message}</p>`;
+        return;
+      }
+
+      const ticket = data.ticket;
+      const messages = data.messages;
+
+      // Ticket Info
+      if(ticketInfoDiv){
+        ticketInfoDiv.innerHTML = `
+          <p><strong>Subject:</strong> ${ticket.subject}</p>
+          <p><strong>Category:</strong> ${ticket.category}</p>
+          <p><strong>Status:</strong> ${ticket.status}</p>
+          <p><strong>Created At:</strong> ${ticket.created_at}</p>
+        `;
+      }
+
+      // Messages
+      if(messagesDiv){
+        messagesDiv.innerHTML = '';
+        if(messages.length === 0){
+          messagesDiv.innerHTML = `<p class="text-center text-muted">No messages yet.</p>`;
+        } else {
+          messages.forEach(msg => {
+            const msgClass = msg.sender_type === 'user' ? 'alert-primary' : 'alert-secondary';
+            messagesDiv.innerHTML += `
+              <div class="alert ${msgClass} py-2 mb-2">
+                <strong>${msg.sender_name}:</strong> ${msg.message} <br>
+                <small class="text-muted">${msg.created_at}</small>
+              </div>
+            `;
+          });
+        }
+      }
+
+      // Show reply form only if ticket is pending
+      const replyForm = document.getElementById('replyForm');
+      if(replyForm) replyForm.style.display = ticket.status === 'Pending' ? 'block' : 'none';
+
+    })
+    .catch(err => console.error('Error loading ticket:', err));
+}
+
+// ================= SEND REPLY =================
+function sendReply(ticketId){
+  const replyMessage = document.getElementById('replyMessage');
+  if(!replyMessage) return;
+
+  const message = replyMessage.value.trim();
+  if(!message) return alert('Message cannot be empty');
+
+  const formData = new FormData();
+  formData.append('action','addReply');
+  formData.append('ticket_id',ticketId);
+  formData.append('message',message);
+
+  fetch('../../handlers/tickets_handler.php',{method:'POST',body:formData})
+    .then(res => res.json())
+    .then(data => {
+      if(data.status === 'success'){
+        replyMessage.value = '';
+        loadTicket(ticketId);
+      } else alert('Failed to send reply');
+    })
+    .catch(err => console.error('Error sending reply:', err));
+}

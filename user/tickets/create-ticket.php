@@ -1,66 +1,76 @@
 <?php
-include '../../config/config.php';
-include '../../includes/header.php';
+include __DIR__ . '/../../includes/header.php';
 
-// Initialize variables
-$subject = $description = '';
-$errors = [];
-$success = false;
-
-// Handle form submission
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  $subject = trim($_POST['subject']);
-  $description = trim($_POST['description']);
-
-  // Basic validation
-  if (empty($subject)) {
-    $errors[] = "Subject is required.";
-  }
-  if (empty($description)) {
-    $errors[] = "Description is required.";
-  }
-
-  if (empty($errors)) {
-    // Replace this with actual database insert logic
-    $success = true;
-
-    // Clear form
-    $subject = $description = '';
-  }
+// 🔒 Redirect if user not logged in
+if (!isset($_SESSION['user'])) {
+    $_SESSION['login_message'] = "You must log in to access this page.";
+    header("Location: ../../auth/login.php");
+    exit();
 }
 ?>
 
-<div class="container py-5 mt-5" style="min-height: 100vh;">
-  <h2 class="mb-4">Create New Support Ticket</h2>
+<!-- 🌸 Primera Living Themed Background -->
+<div class="tickets-bg py-5">
+  <div class="container py-4 fade-in">
 
-  <?php if (!empty($errors)): ?>
-    <div class="alert alert-danger">
-      <ul class="mb-0">
-        <?php foreach ($errors as $error): ?>
-          <li><?php echo htmlspecialchars($error); ?></li>
-        <?php endforeach; ?>
-      </ul>
-    </div>
-  <?php elseif ($success): ?>
-    <div class="alert alert-success">
-      Ticket submitted successfully!
-    </div>
-  <?php endif; ?>
+    <!-- 📝 Page Heading -->
+    <h3 class="mb-4 fw-bold text-primary text-center">
+      <i class="fas fa-ticket-alt me-2"></i>Create New Ticket
+    </h3>
 
-  <form method="post" action="">
-    <div class="mb-3">
-      <label for="subject" class="form-label">Subject</label>
-      <input type="text" class="form-control" id="subject" name="subject" value="<?php echo htmlspecialchars($subject); ?>" required>
+    <!-- ✅ Alert Container -->
+    <div id="alertBox" class="mb-3" style="display:none;">
+      <div class="alert fade show mb-0" role="alert"></div>
     </div>
 
-    <div class="mb-3">
-      <label for="description" class="form-label">Description</label>
-      <textarea class="form-control" id="description" name="description" rows="6" required><?php echo htmlspecialchars($description); ?></textarea>
+    <!-- 💳 Ticket Form Card -->
+    <div class="card border-0 shadow ticket-card">
+      <div class="card-body">
+        <form id="createTicketForm">
+          <!-- Category -->
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Category</label>
+            <select name="category" class="form-select" required>
+              <option value="Payment">Payment</option>
+              <option value="Unit">Unit</option>
+              <option value="Maintenance">Maintenance</option>
+              <option value="Other" selected>Other</option>
+            </select>
+          </div>
+
+          <!-- Subject -->
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Subject</label>
+            <input type="text" name="subject" class="form-control" placeholder="Enter subject..." required>
+          </div>
+
+          <!-- Message -->
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Message</label>
+            <textarea name="message" rows="5" class="form-control" placeholder="Describe your concern..." required></textarea>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="text-end">
+            <button type="submit" class="btn btn-success">
+              <i class="fa fa-paper-plane me-1"></i>Submit Ticket
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
 
-    <button type="submit" class="btn btn-action">Submit Ticket</button>
-    <a href="tickets.php" class="btn" style="background-color: #dc3545; color: white;">Cancel</a>
-  </form>
+    <!-- ⬅️ Back Button -->
+    <div class="text-center mt-3">
+      <a href="tickets.php" class="btn btn-outline-secondary">
+        <i class="fas fa-arrow-left me-1"></i>Back to My Tickets
+      </a>
+    </div>
+
+  </div>
 </div>
 
-<?php include '../../includes/footer.php'; ?>
+<!-- JS -->
+<script src="../../asset/js/tickets.js"></script>
+
+<?php include __DIR__ . '/../../includes/footer.php'; ?>

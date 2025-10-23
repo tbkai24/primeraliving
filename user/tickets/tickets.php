@@ -1,92 +1,67 @@
 <?php
-session_start();
-include '../../includes/header.php';
+include __DIR__ . '/../../includes/header.php';
+
+// 🔒 Redirect if user not logged in
+if (!isset($_SESSION['user'])) {
+    $_SESSION['login_message'] = "You must log in to access this page.";
+    header("Location: ../../auth/login.php");
+    exit();
+}
+
+$user = $_SESSION['user'];
 ?>
 
-<div class="tickets-bg">
-  <div class="container">
-    <h2 class="mb-4 tickets-title">
-      <i class="fas fa-ticket-alt me-2"></i>Support Tickets
-    </h2>
+<!-- 🌸 Primera Living Themed Background -->
+<div class="transaction-bg d-flex flex-column min-vh-100 py-5">
+  <div class="container py-4 fade-in">
+    <h3 class="mb-4 fw-bold text-primary text-center">
+      <i class="fas fa-ticket-alt me-2"></i>My Tickets
+    </h3>
 
-    <!-- Create Ticket Button -->
-    <div class="mb-3 text-end create-ticket-btn">
-      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createTicketModal">
-        <i class="fa fa-plus"></i> Create Ticket
-      </button>
+    <!-- ✅ Alert -->
+    <div id="alertBox" class="mb-3" style="display:none;">
+      <div class="alert fade show mb-0" role="alert"></div>
     </div>
 
-    <!-- Tickets Table -->
-    <div class="tickets-card">
-      <div class="table-responsive">
-        <table class="table table-striped align-middle text-center mb-0" id="ticketsTable">
-          <thead>
-            <tr>
-              <th>Ticket #</th>
-              <th>Category</th>
-              <th>Subject</th>
-              <th>Status</th>
-              <th>Date Created</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- Tickets will load dynamically via tickets.js -->
-          </tbody>
-        </table>
+    <!-- 🎫 Tickets Section -->
+    <div class="card border-0 shadow transaction-card mb-4">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h6 class="mb-0 fw-semibold text-secondary">
+            <i class="fas fa-list me-2 text-peach"></i>Your Support Tickets
+          </h6>
+          <a href="create-ticket.php" class="btn btn-peach btn-sm">
+            <i class="fas fa-plus-circle me-1"></i>Create Ticket
+          </a>
+        </div>
+
+        <!-- 🧾 Tickets Table -->
+        <div class="table-responsive">
+          <table class="table table-hover align-middle text-center mb-0" id="ticketsTable">
+            <thead class="table-peach">
+              <tr>
+                <th>#</th>
+                <th>Category</th>
+                <th>Subject</th>
+                <th>Status</th>
+                <th>Date Created</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td colspan="6" class="text-center text-muted">Loading...</td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Create Ticket Modal -->
-<div class="modal fade" id="createTicketModal" tabindex="-1" aria-labelledby="createTicketLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <form id="createTicketForm">
-        <div class="modal-header">
-          <h5 class="modal-title" id="createTicketLabel">Create New Ticket</h5>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-        </div>
-        <div class="modal-body">
-          <!-- Category -->
-          <div class="mb-3">
-            <label class="form-label">Category</label>
-            <select name="category" class="form-select" required>
-              <option value="Payment">Payment</option>
-              <option value="Unit">Unit</option>
-              <option value="Maintenance">Maintenance</option>
-              <option value="Other" selected>Other</option>
-            </select>
-          </div>
-
-          <!-- Subject -->
-          <div class="mb-3">
-            <label class="form-label">Subject</label>
-            <input type="text" name="subject" class="form-control" required placeholder="Enter subject...">
-          </div>
-
-          <!-- Message -->
-          <div class="mb-3">
-            <label class="form-label">Message</label>
-            <textarea name="message" rows="4" class="form-control" placeholder="Describe your concern..." required></textarea>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-success">
-            <i class="fa fa-paper-plane"></i> Submit Ticket
-          </button>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-            Cancel
-          </button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-
-<?php include '../../includes/footer.php'; ?>
-
-<!-- External JS -->
+<!-- JS -->
+<script>
+const currentUserId = <?= json_encode($user['user_id']) ?>;
+</script>
 <script src="../../asset/js/tickets.js"></script>
 
+<?php include __DIR__ . '/../../includes/footer.php'; ?>
